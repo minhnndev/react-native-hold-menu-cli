@@ -124,6 +124,10 @@ export type HoldItemProps = {
    * longPressMinDurationMs={250}
    */
   longPressMinDurationMs?: number;
+
+
+  activeContainerStyles?: ViewStyle | ViewStyle[];
+
 };
 
 export type GestureHandlerProps = {

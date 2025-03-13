@@ -1,35 +1,11 @@
 {
-  "name": "react-native-hold-menu",
-  "version": "0.1.6",
-  "description": "A performant, easy to use hold to open context menu for React Native powered by Reanimated.",
+  "name": "react-native-hold-menu-cli",
+  "version": "0.1.10",
+  "description": "A performant, easy to use hold to open context menu for React Native CLI powered by Reanimated.",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
   "types": "lib/typescript/index.d.ts",
   "react-native": "src/index.ts",
-  "files": [
-    "src",
-    "lib",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__"
-  ],
-  "keywords": [
-    "react-native",
-    "ios",
-    "android",
-    "hold-menu",
-    "context-menu",
-    "hold-to-open",
-    "reanimated",
-    "menu"
-  ],
-  "repository": "https://github.com/enesozturk/react-native-hold-menu",
-  "author": "Enes Ozturk (https://ozturkenes.com)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/enesozturk/react-native-hold-menu/issues"
-  },
-  "homepage": "https://enesozturk.github.io/react-native-hold-menu",
   "scripts": {
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -40,10 +16,43 @@
     "bootstrap": "yarn install && yarn example",
     "version": "auto-changelog -p && git add ."
   },
+  "files": [
+    "src",
+    "lib",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
+  ],
+  "keywords": [
+    "react-native",
+    "react-native-cli",
+    "ios",
+    "android",
+    "hold-menu",
+    "context-menu",
+    "hold-to-open",
+    "reanimated",
+    "menu"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minhnndev/react-native-hold-menu-cli.git"
+  },
+  "author": "Nguyen Ngoc Minh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/minhnndev/react-native-hold-menu-cli/issues",
+    "email": "ngocminhit2000@gmail.com"
+  },
+  "publishConfig": {
+    "@minhnndev:registry": "https://npm.pkg.github.com",
+    "provenance": true
+  },
+  "homepage": "https://minhnndev.github.io/react-native-hold-menu-cli",
   "dependencies": {
     "@gorhom/portal": "^1.0.3",
-    "expo-blur": "^12.0.1",
-    "expo-haptics": "^12.0.1",
+    "@react-native-community/blur": "^4.4.0",
+    "react-native-haptic-feedback": "^2.2.0",
     "lodash.isequal": "^4.5.0",
     "nanoid": "^3.1.20"
   },
@@ -73,11 +82,11 @@
     "react-native-reanimated": "2.1.0",
     "react-test-renderer": "~16.13.1",
     "release-it": "^14.4.1",
-    "typescript": "~4.0.0"
+    "typescript": "~5.0.4"
   },
   "peerDependencies": {
-    "expo-blur": "^11.1.0",
-    "expo-haptics": "^11.2.0",
+    "@react-native-community/blur": "^3.3.0",
+    "react-native-haptic-feedback": "^2.2.0",
     "react": "*",
     "react-native": "*",
     "react-native-gesture-handler": ">=1.8.0",
