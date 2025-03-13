@@ -45,8 +45,8 @@
     "email": "ngocminhit2000@gmail.com"
   },
   "publishConfig": {
-    "@minhnndev:registry": "https://npm.pkg.github.com",
-    "provenance": true
+   "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "homepage": "https://minhnndev.github.io/react-native-hold-menu-cli",
   "dependencies": {
