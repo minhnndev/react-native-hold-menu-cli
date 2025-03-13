@@ -46,7 +46,7 @@
   },
   "publishConfig": {
    "registry": "https://registry.npmjs.org/",
-    "access": "public"
+   "access": "public"
   },
   "homepage": "https://minhnndev.github.io/react-native-hold-menu-cli",
   "dependencies": {

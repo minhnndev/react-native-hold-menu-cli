@@ -21,6 +21,9 @@ import Animated, {
   withSequence,
   withSpring,
   useAnimatedReaction,
+  useDerivedValue,
+  useAnimatedKeyboard,
+  KeyboardState,
 } from 'react-native-reanimated';
 //#endregion
 
@@ -85,6 +88,14 @@ const HoldItemComponent = ({
   const itemRectHeight = useSharedValue<number>(0);
   const itemScale = useSharedValue<number>(1);
   const transformValue = useSharedValue<number>(0);
+  const keyboard = useAnimatedKeyboard();
+  const keyboardHeight = useSharedValue(0);
+
+  useDerivedValue(() => {
+    if (keyboard.state.value === KeyboardState.OPEN) {
+      keyboardHeight.value = keyboard.height.value;
+    }
+  });
 
   const transformOrigin = useSharedValue<TransformOriginAnchorPosition>(
     menuAnchorPosition || 'top-right'
@@ -154,12 +165,12 @@ const HoldItemComponent = ({
 
   const calculateTransformValue = () => {
     'worklet';
-
+  
     const height =
       deviceOrientation === 'portrait' ? WINDOW_HEIGHT : WINDOW_WIDTH;
-
+  
     const isAnchorPointTop = transformOrigin.value.includes('top');
-
+  
     let tY = 0;
     if (!disableMove) {
       if (isAnchorPointTop) {
@@ -169,13 +180,25 @@ const HoldItemComponent = ({
           menuHeight +
           styleGuide.spacing +
           (safeAreaInsets?.bottom || 0);
-
-        tY = topTransform > height ? height - topTransform : 0;
+  
+        // Adjust for keyboard height when keyboard is open
+        if (keyboard.state.value === KeyboardState.OPEN) {
+          tY = topTransform > height - keyboardHeight.value ? height - keyboardHeight.value - topTransform : 0;
+        } else {
+          tY = topTransform > height ? height - topTransform : 0;
+        }
       } else {
         const bottomTransform =
           itemRectY.value - menuHeight - (safeAreaInsets?.top || 0);
-        tY =
-          bottomTransform < 0 ? -bottomTransform + styleGuide.spacing * 2 : 0;
+  
+        // Adjust for keyboard height when keyboard is open
+        if (keyboard.state.value === KeyboardState.OPEN) {
+          tY =
+            bottomTransform < keyboardHeight.value ? keyboardHeight.value - bottomTransform + styleGuide.spacing * 2 : 0;
+        } else {
+          tY =
+            bottomTransform < 0 ? -bottomTransform + styleGuide.spacing * 2 : 0;
+        }
       }
     }
     return tY;
