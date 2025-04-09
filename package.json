@@ -1,6 +1,6 @@
 {
   "name": "react-native-hold-menu-cli",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "A performant, easy to use hold to open context menu for React Native CLI powered by Reanimated.",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
