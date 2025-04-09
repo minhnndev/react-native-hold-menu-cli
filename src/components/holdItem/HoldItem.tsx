@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo, useMemo } from 'react';
 import { ViewProps } from 'react-native';
 
@@ -30,7 +31,7 @@ import Animated, {
 //#region dependencies
 import { Portal } from '@gorhom/portal';
 import { nanoid } from 'nanoid/non-secure';
-import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 //#endregion
 
 //#region utils & types
@@ -165,12 +166,12 @@ const HoldItemComponent = ({
 
   const calculateTransformValue = () => {
     'worklet';
-  
+
     const height =
       deviceOrientation === 'portrait' ? WINDOW_HEIGHT : WINDOW_WIDTH;
-  
+
     const isAnchorPointTop = transformOrigin.value.includes('top');
-  
+
     let tY = 0;
     if (!disableMove) {
       if (isAnchorPointTop) {
@@ -180,25 +181,13 @@ const HoldItemComponent = ({
           menuHeight +
           styleGuide.spacing +
           (safeAreaInsets?.bottom || 0);
-  
-        // Adjust for keyboard height when keyboard is open
-        if (keyboard.state.value === KeyboardState.OPEN) {
-          tY = topTransform > height - keyboardHeight.value ? height - keyboardHeight.value - topTransform : 0;
-        } else {
-          tY = topTransform > height ? height - topTransform : 0;
-        }
+
+        tY = topTransform > height ? height - topTransform : 0;
       } else {
         const bottomTransform =
           itemRectY.value - menuHeight - (safeAreaInsets?.top || 0);
-  
-        // Adjust for keyboard height when keyboard is open
-        if (keyboard.state.value === KeyboardState.OPEN) {
-          tY =
-            bottomTransform < keyboardHeight.value ? keyboardHeight.value - bottomTransform + styleGuide.spacing * 2 : 0;
-        } else {
-          tY =
-            bottomTransform < 0 ? -bottomTransform + styleGuide.spacing * 2 : 0;
-        }
+        tY =
+          bottomTransform < 0 ? -bottomTransform + styleGuide.spacing * 2 : 0;
       }
     }
     return tY;
@@ -347,41 +336,46 @@ const HoldItemComponent = ({
     };
   });
   const containerStyle = React.useMemo(
-    () => [containerStyles, animatedContainerStyle, isActive.value ? activeContainerStyles : {}],
+    () => [
+      containerStyles,
+      animatedContainerStyle,
+      isActive.value ? activeContainerStyles : {},
+    ],
     [containerStyles, animatedContainerStyle, menuActive]
   );
 
   const animatedPortalStyle = useAnimatedStyle(() => {
     const animateOpacity = () =>
       withDelay(HOLD_ITEM_TRANSFORM_DURATION, withTiming(0, { duration: 0 }));
-  
+
     // Tính toán available height (bao gồm cả bàn phím)
-    const windowHeight = deviceOrientation === 'portrait' ? WINDOW_HEIGHT : WINDOW_WIDTH;
+    const windowHeight =
+      deviceOrientation === 'portrait' ? WINDOW_HEIGHT : WINDOW_WIDTH;
     const availableHeight = windowHeight - keyboardHeight.value;
-  
+
     // Tính tỷ lệ scale dựa trên availableHeight và chiều cao item
     const scaleFactor = Math.min(availableHeight / itemRectHeight.value, 1);
     const scaledHeight = itemRectHeight.value * scaleFactor;
-    
+
     // Tính toán vị trí top mới để item nằm hoàn toàn trong màn hình
     const desiredTop = Math.max(
       0,
       Math.min(itemRectY.value, availableHeight - scaledHeight)
     );
     const translateY = desiredTop - itemRectY.value;
-  
+
     // Animation cho transform
     const transformAnimation = disableMove
       ? 0
       : isActive.value
       ? withSpring(translateY, SPRING_CONFIGURATION)
       : withTiming(0, { duration: HOLD_ITEM_TRANSFORM_DURATION });
-  
+
     // Animation cho scale
     const scaleAnimation = isActive.value
       ? withTiming(scaleFactor, { duration: HOLD_ITEM_TRANSFORM_DURATION })
       : withTiming(1, { duration: HOLD_ITEM_TRANSFORM_DURATION });
-  
+
     return {
       zIndex: 10,
       position: 'absolute',
@@ -396,7 +390,6 @@ const HoldItemComponent = ({
       ],
     };
   });
-  
   const portalContainerStyle = useMemo(
     () => [styles.holdItem, animatedPortalStyle],
     [animatedPortalStyle]
@@ -477,7 +470,10 @@ const HoldItemComponent = ({
       <Portal key={key} name={key}>
         <Animated.View
           key={key}
-          style={[portalContainerStyle, isActive.value ? activeContainerStyles : {}]}
+          style={[
+            portalContainerStyle,
+            isActive.value ? activeContainerStyles : {},
+          ]}
           animatedProps={animatedPortalProps}
         >
           <PortalOverlay />

@@ -128,6 +128,7 @@ const MenuListComponent = () => {
   return (
     <AnimatedView
       intensity={100}
+      // @ts-ignore
       animatedProps={animatedProps}
       style={[styles.menuContainer, messageStyles]}
     >

@@ -45,16 +45,16 @@
     "email": "ngocminhit2000@gmail.com"
   },
   "publishConfig": {
-   "registry": "https://registry.npmjs.org/",
-   "access": "public"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "homepage": "https://minhnndev.github.io/react-native-hold-menu-cli",
   "dependencies": {
     "@gorhom/portal": "^1.0.3",
     "@react-native-community/blur": "^4.4.0",
-    "react-native-haptic-feedback": "^2.2.0",
     "lodash.isequal": "^4.5.0",
-    "nanoid": "^3.1.20"
+    "nanoid": "^3.1.20",
+    "react-native-haptic-feedback": "^2.2.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
@@ -79,17 +79,17 @@
     "react-native": "~0.63.4",
     "react-native-builder-bob": "^0.17.1",
     "react-native-gesture-handler": "1.8.0",
-    "react-native-reanimated": "2.1.0",
+    "react-native-reanimated": "3.3.0",
     "react-test-renderer": "~16.13.1",
     "release-it": "^14.4.1",
     "typescript": "~5.0.4"
   },
   "peerDependencies": {
     "@react-native-community/blur": "^3.3.0",
-    "react-native-haptic-feedback": "^2.2.0",
     "react": "*",
     "react-native": "*",
     "react-native-gesture-handler": ">=1.8.0",
+    "react-native-haptic-feedback": "^2.2.0",
     "react-native-reanimated": ">=2.1.0"
   },
   "@react-native-community/bob": {

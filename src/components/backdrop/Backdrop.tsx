@@ -115,8 +115,8 @@ const BackdropComponent = () => {
   return (
     <TapGestureHandler onHandlerStateChange={tapGestureEvent}>
       <AnimatedBlurView
-        // @ts-ignore
         tint="default"
+        // @ts-ignore
         animatedProps={animatedContainerProps}
         style={[styles.container, animatedContainerStyle]}
       >
