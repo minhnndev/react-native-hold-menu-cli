@@ -354,15 +354,34 @@ const HoldItemComponent = ({
   const animatedPortalStyle = useAnimatedStyle(() => {
     const animateOpacity = () =>
       withDelay(HOLD_ITEM_TRANSFORM_DURATION, withTiming(0, { duration: 0 }));
-
-    let tY = calculateTransformValue();
-    const transformAnimation = () =>
-      disableMove
-        ? 0
-        : isActive.value
-        ? withSpring(tY, SPRING_CONFIGURATION)
-        : withTiming(-0.1, { duration: HOLD_ITEM_TRANSFORM_DURATION });
-
+  
+    // Tính toán available height (bao gồm cả bàn phím)
+    const windowHeight = deviceOrientation === 'portrait' ? WINDOW_HEIGHT : WINDOW_WIDTH;
+    const availableHeight = windowHeight - keyboardHeight.value;
+  
+    // Tính tỷ lệ scale dựa trên availableHeight và chiều cao item
+    const scaleFactor = Math.min(availableHeight / itemRectHeight.value, 1);
+    const scaledHeight = itemRectHeight.value * scaleFactor;
+    
+    // Tính toán vị trí top mới để item nằm hoàn toàn trong màn hình
+    const desiredTop = Math.max(
+      0,
+      Math.min(itemRectY.value, availableHeight - scaledHeight)
+    );
+    const translateY = desiredTop - itemRectY.value;
+  
+    // Animation cho transform
+    const transformAnimation = disableMove
+      ? 0
+      : isActive.value
+      ? withSpring(translateY, SPRING_CONFIGURATION)
+      : withTiming(0, { duration: HOLD_ITEM_TRANSFORM_DURATION });
+  
+    // Animation cho scale
+    const scaleAnimation = isActive.value
+      ? withTiming(scaleFactor, { duration: HOLD_ITEM_TRANSFORM_DURATION })
+      : withTiming(1, { duration: HOLD_ITEM_TRANSFORM_DURATION });
+  
     return {
       zIndex: 10,
       position: 'absolute',
@@ -372,17 +391,12 @@ const HoldItemComponent = ({
       height: itemRectHeight.value,
       opacity: isActive.value ? 1 : animateOpacity(),
       transform: [
-        {
-          translateY: transformAnimation(),
-        },
-        {
-          scale: isActive.value
-            ? withTiming(1, { duration: HOLD_ITEM_TRANSFORM_DURATION })
-            : itemScale.value,
-        },
+        { translateY: transformAnimation },
+        { scale: scaleAnimation },
       ],
     };
   });
+  
   const portalContainerStyle = useMemo(
     () => [styles.holdItem, animatedPortalStyle],
     [animatedPortalStyle]

@@ -6,6 +6,10 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     zIndex: 15,
   },
+  childrenContainer: {
+    width: '100%',
+    height: '100%',
+  }
 });
 
 export default styles;

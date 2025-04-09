@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "react-native-hold-menu": ["../src/index"]
+      "react-native-hold-menu-cli": ["../src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

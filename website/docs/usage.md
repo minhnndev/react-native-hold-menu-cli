@@ -40,7 +40,7 @@ See all the [HoldItem props](/react-native-hold-menu/docs/props#holditem).
 import React from 'react';
 import { View } from 'react-native';
 
-import { HoldItem } from 'react-native-hold-menu';
+import { HoldItem } from 'react-native-hold-menu-cli';
 
 import styles from './styles';
 

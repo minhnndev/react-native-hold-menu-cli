@@ -42,11 +42,11 @@ function Content() {
                   className={styles.copyPaste}
                   onClick={() =>
                     navigator.clipboard.writeText(
-                      'yarn add react-native-hold-menu'
+                      'yarn add react-native-hold-menu-cli'
                     )
                   }
                 >
-                  yarn add react-native-hold-menu
+                  yarn add react-native-hold-menu-cli
                   <CopySvg className={styles.copyIcon} />
                 </button>
               </div>

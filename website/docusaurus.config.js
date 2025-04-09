@@ -3,12 +3,12 @@ module.exports = {
   tagline:
     'A performant, easy to use hold to open context menu for React Native powered by Reanimated.',
   url: 'https://enesozturk.github.io',
-  baseUrl: '/react-native-hold-menu/',
+  baseUrl: '/react-native-hold-menu-cli/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'enesozturk',
-  projectName: 'react-native-hold-menu',
+  organizationName: 'minhnndev',
+  projectName: 'react-native-hold-menu-cli',
   themeConfig: {
     twitterImage: 'img/og.png',
     image: 'img/og.png',
@@ -22,7 +22,7 @@ module.exports = {
           position: 'left',
         },
         {
-          href: 'https://github.com/enesozturk/react-native-hold-menu',
+          href: 'https://github.com/minhnndev/react-native-hold-menu-cli',
           label: 'GitHub',
           position: 'right',
         },
